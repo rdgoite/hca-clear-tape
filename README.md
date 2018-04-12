@@ -3,6 +3,14 @@
 This is a tool that compiles together all the metadata from a given HCA bundle 
 into a single JSON. Bundle contents are added as objects to one big JSON array.
 
+## Dependencies
+
+Clear Tape is developed as a Python 3 application. All the depencies needed
+to run and/or develop this tool is listed in the `requirements.txt` file,
+which can be used as input to the `pip` utility:
+
+    pip install -r requirements.txt
+
 ## Usage
 
 This utility currently only supports generation of JSON for one bundle at a 
