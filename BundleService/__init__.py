@@ -12,7 +12,7 @@ class BundleService:
         if API_URL_ENV_KEY in os.environ:
             self.base_url = os.environ[API_URL_ENV_KEY]
 
-    def get_indexed_files(self, bundle_uuid):
+    def iterate_indexed_files(self, bundle_uuid):
         bundle = self.get_bundle(bundle_uuid)
         for file in bundle['files']:
             if (file['indexed']):
