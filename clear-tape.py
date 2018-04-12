@@ -8,4 +8,4 @@ if __name__ == '__main__':
     contents = []
     for file in service.iterate_indexed_files(bundle_uuid):
         contents.append(file)
-    print(json.dumps(contents, indent=4))
+    print(json.dumps(contents, indent=2))
