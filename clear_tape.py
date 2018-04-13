@@ -30,10 +30,10 @@ def run():
     output_prefix = determine_output_prefix(output_directory)
 
     submission_id = determine_submission_id()
-    bundle_manifests = core_service.get_bundle_manifests(submission_id)
+    manifest_iteration = core_service.iterate_bundle_manifests(submission_id)
 
     bundle_service = BundleService(env_config)
-    process_bundles(bundle_service, bundle_manifests, output_prefix)
+    process_bundles(bundle_service, manifest_iteration, output_prefix)
 
 
 def prepare_output_directory(output_directory):
