@@ -62,10 +62,10 @@ def process_bundles(bundle_service, bundle_manifests, output_prefix):
     for manifest in bundle_manifests:
         bundle_uuid = manifest['bundleUuid']
         print('Preparing bundle #%d with id [%s]...' % (count, bundle_uuid))
-        bundle = compile_bundle(bundle_service, bundle_uuid)
         file_name = '%s_%d.json' % (output_prefix, count)
         with open(file_name, 'w+') as file:
-            file.write(json.dumps(bundle, indent=2))
+            bundle = compile_bundle(bundle_service, bundle_uuid)
+            file.write(bundle)
             count = count + 1
             print('done')
 
@@ -73,7 +73,7 @@ def compile_bundle(bundle_service, bundle_uuid):
     contents = []
     for file in bundle_service.iterate_indexed_files(bundle_uuid):
         contents.append(file)
-    return contents
+    return json.dumps(contents, indent=2)
 
 
 if __name__ == '__main__':
