@@ -13,27 +13,42 @@ which can be used as input to the `pip` utility:
 
 ## Usage
 
-This utility currently only supports generation of JSON for one bundle at a 
-time. To the script takes a bundle UUID as a command line argument:
+### Configuration
 
-    python clear-tape.py <bundle_uuid>
+By default, the script is set to run against development environment, 
+connecting to Ingest Core in `http://api.ingest.dev.data.humancellatlas.org` 
+and DSS in `https://dss.dev.data.humancellatlas.org/v1` to find and process 
+the bundles. However, it can be configured to use a different deployment 
+environment by setting the `CT_ENV` environment variable before the script 
+is run. As the time of writing, there are only 2 options available: `DEV` 
+for the development environment, and `PROD`, for the production environment.
+
+    export CT_ENV=PROD
     
-The script prints the results to the standard output, which can then be 
-directed to a file:
+The sample execution above will set the script to query the production 
+servers.
 
-    python clear-tape.py <bundle_uuid> > /path/to/file.json
+### Running the Script
+
+This utility takes in a submission id and outputs compilation of all the
+bundles that have been generated from the given submission:
+
+    python clear_tape.py <bundle_uuid>
     
-### Data Store API
+Running the command above will create files in the `output` directory of
+the present working directory. All files are by default prefixed with the
+name `bundle` and are numbered based on the order they are process. For
+example, a submission that generates 3 bundles will have files 
+`bundle_1.json`, `bundle_2.json`, and `bundle_3.json` in the `output` 
+directory. The prefix can be set to something else by setting a second
+argument to the script:
 
-By default, the script connects to `https://dss.dev.data.humancellatlas.org/v1`
-to find the bundles. However, it can be configured to query a different 
-instance of the DSS by setting the `CT_DSS_API` environment variable before
-the script is run:
-
-    $ export CT_DSS_API=https://dss.data.humancellatlas.org/v1
-    $ python clear-tape.py <bundle_uuid>
+    python clear_tape.py <bundle_uuid> my_bundle
     
-The sample execution above will set the script to query the production DSS.
+The command above will create `my_bundle_*.json` in the `output` directory.
+Changing the prefix is useful when generating compilations from different
+bundles, setting each to use their own unique prefix.
+   
 
 ## Assumptions
 
