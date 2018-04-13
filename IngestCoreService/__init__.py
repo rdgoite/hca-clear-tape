@@ -1,5 +1,5 @@
 import requests
-import json
+
 from Config import env
 
 
@@ -23,4 +23,4 @@ class IngestCoreService:
     def _get_bundle_manifests(self, envelope_uuid, page_number, page_size):
         url = '%s/submissionEnvelopes/%s/bundleManifests' % (self.env.core_api_url, envelope_uuid)
         response = requests.get(url, {'page': page_number, 'size': page_size})
-        return json.loads(response.text)
+        return response.json()

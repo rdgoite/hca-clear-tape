@@ -1,6 +1,7 @@
-import json
 import requests
+
 from Config import env
+
 
 class BundleService:
 
@@ -13,10 +14,10 @@ class BundleService:
             if (file['indexed']):
                 file_url = '%s/files/%s' % (self.env.dss_api_url, file['uuid'])
                 response = requests.get(file_url, {'replica': 'aws'})
-                yield json.loads(response.text)
+                yield response.json()
 
 
     def get_bundle(self, uuid):
         bundle_url = '%s/bundles/%s' % (self.env.dss_api_url, uuid)
         response = requests.get(bundle_url, {'replica': 'aws'})
-        return json.loads(response.text)['bundle']
+        return response.json()['bundle']
