@@ -5,7 +5,7 @@ import json
 from Config import env
 from IngestCoreService import IngestCoreService
 from BundleService import BundleService
-
+import traceback
 
 CT_ENV = 'CT_ENV'
 
@@ -80,5 +80,5 @@ if __name__ == '__main__':
     try:
         run()
     except Exception as exception:
-        print('Unexpected %s: %s' % (type(exception), exception))
+        traceback.print_exc()
         sys.exit(1)
