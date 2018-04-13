@@ -7,14 +7,17 @@ from IngestCoreService import IngestCoreService
 from BundleService import BundleService
 
 
+CT_ENV = 'CT_ENV'
+
+
 def determine_env():
-    variable = "CT_ENV"
     env_config = env.DEV
-    if variable in os.environ:
-        if variable in env.MAP:
-            env_config = env.MAP[variable]
+    if CT_ENV in os.environ:
+        env_name = os.environ[CT_ENV]
+        if env_name in env.MAP:
+            env_config = env.MAP[env_name]
         else:
-            raise Exception('Failed to set env to unknown name [%s]' % (variable))
+            raise Exception('Failed to set env to unknown name [%s]' % (env_name))
     return env_config
 
 
@@ -77,5 +80,5 @@ if __name__ == '__main__':
     try:
         run()
     except Exception as exception:
-        print(exception)
+        print('Unexpected %s: %s' % (type(exception), exception))
         sys.exit(1)
