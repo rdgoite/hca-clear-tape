@@ -33,7 +33,7 @@ servers.
 This utility takes in a submission id and outputs compilation of all the
 bundles that have been generated from the given submission:
 
-    python clear_tape.py <bundle_uuid>
+    python clear_tape.py <submission_id>
     
 Running the command above will create files in the `output` directory of
 the present working directory. All files are by default prefixed with the
@@ -43,7 +43,7 @@ example, a submission that generates 3 bundles will have files
 directory. The prefix can be set to something else by setting a second
 argument to the script:
 
-    python clear_tape.py <bundle_uuid> my_bundle
+    python clear_tape.py <submission_id> my_bundle
     
 The command above will create `my_bundle_*.json` in the `output` directory.
 Changing the prefix is useful when generating compilations from different
