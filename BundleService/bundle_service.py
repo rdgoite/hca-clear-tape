@@ -5,7 +5,7 @@ from Config import env
 
 class BundleService:
 
-    def __init__(self, _env=env.DEV):
+    def __init__(self, _env=env.ENV['DEV']):
         self.env = _env
 
     def iterate_indexed_files(self, bundle_uuid):

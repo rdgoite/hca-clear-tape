@@ -11,11 +11,11 @@ CT_ENV = 'CT_ENV'
 
 
 def determine_env():
-    env_config = env.DEV
+    env_config = env.ENV['DEV']
     if CT_ENV in os.environ:
         env_name = os.environ[CT_ENV]
-        if env_name in env.MAP:
-            env_config = env.MAP[env_name]
+        if env_name in env.ENV:
+            env_config = env.ENV[env_name]
         else:
             raise Exception('Failed to set env to unknown name [%s]' % (env_name))
     return env_config

@@ -10,6 +10,6 @@ def _create_env(env_name):
                        f'http://api.ingest.{env_name}.data.humancellatlas.org')
 
 
-MAP = {env_name.upper(): _create_env(env_name) for env_name in ['dev', 'staging']}
-MAP['PROD'] = Environment('https://dss.data.humancellatlas.org/v1',
+ENV = {env_name.upper(): _create_env(env_name) for env_name in ['dev', 'staging']}
+ENV['PROD'] = Environment('https://dss.data.humancellatlas.org/v1',
                           'http://api.ingest.data.humancellatlas.org')
